@@ -20,6 +20,7 @@ const Tasks = ({ tasks, activeCollection }) => {
                     return(
                         <View onPress={() => alert("View collection items")} style={collectionStyles.item}>
                             <Text style={collectionStyles.title}>{task.title}</Text>
+                            <Text style={collectionStyles.sub}></Text>
                         </View>
                     );
                 })}
