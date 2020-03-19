@@ -26,6 +26,16 @@ export const taskStyles = StyleSheet.create({
         fontSize: 22,
         paddingVertical: 5,
         letterSpacing: 1
+    },
+    null: {
+        fontSize: 170,
+        color: colors.secondary,
+    },
+    nullBody: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: 'center',
+        marginTop: -50
     }
 });
 

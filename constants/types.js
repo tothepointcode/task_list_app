@@ -1,0 +1,8 @@
+export const OPEN_COLLECTION = 'OPEN_COLLECTION';
+export const CREATE_COLLECTION = 'CREATE_COLLECTION';
+
+export const CREATE_TASK = 'CREATE_TASK';
+export const DELETE_TASK = 'DELETE_TASK';
+export const EDIT_TASK = 'EDIT_TASK';
+
+export const SET_ACTIVE_SCREEN = 'SET_ACTIVE_SCREEN';

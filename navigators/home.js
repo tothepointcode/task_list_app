@@ -29,7 +29,7 @@ const BottomNav = () => {
                     iconName = 'align-left';
                     } else if (route.name === 'Modification') {
                         iconName = 'pluscircle';
-                        return <AntDesign style={{position: 'absolute', top: -23 }} name={iconName} size={50} color={color} />;
+                        return <AntDesign style={{position: 'absolute', top: -15 }} name={iconName} size={60} color={color} />;
                     }
                     return <Feather name={iconName} size={size} color={color} />;
                 },

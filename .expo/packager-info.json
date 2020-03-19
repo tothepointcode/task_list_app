@@ -2,8 +2,8 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 5992,
-  "expoServerNgrokUrl": "https://24-nx8.anonymous.tasklistapp.exp.direct",
-  "packagerNgrokUrl": "https://packager.24-nx8.anonymous.tasklistapp.exp.direct",
-  "ngrokPid": 23404
+  "packagerPid": 3500,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
