@@ -1,7 +1,10 @@
 import {
     OPEN_COLLECTION,
+    DELETE_COLLECTION,
+    EDIT_COLLECTION,
+    CREATE_COLLECTION,
     CREATE_TASK,
-    SET_ACTIVE_SCREEN
+    DELETE_TASK
 } from '../constants/types';
 
 const initialState = {
@@ -35,6 +38,7 @@ const initialState = {
 const taskReducer = (state=initialState, action) => {
     const { type, payload } = action;
     const { activeCollection, tasks} = state;
+    
     switch (type) {
         case OPEN_COLLECTION: {
             return {
@@ -42,34 +46,44 @@ const taskReducer = (state=initialState, action) => {
                 activeCollection: payload
             }
         }
-        case SET_ACTIVE_SCREEN: {
+        case CREATE_COLLECTION: {
+            return { 
+                ...state,
+                tasks: [...tasks, {name: payload, data: []}]
+            }
+        }
+        case DELETE_COLLECTION: {
             return {
                 ...state,
-                activeScreen: payload
+                tasks: [...tasks.filter((item, index) => {return index !== payload })]
+            }
+        }
+        case EDIT_COLLECTION: {
+            let taskList = [...tasks];
+            taskList[payload.index].name = payload.details
+            return {
+                ...state,
+                tasks: taskList
             }
         }
         case CREATE_TASK: {
-            if (tasks[activeCollection].name !== payload.name) {
+            let newTaskList = [...tasks];
+            newTaskList[activeCollection].data.push(payload.data);
 
-                return {
-                    ...state,
-                    tasks: [
-                        ...tasks,
-                        {
-                            name: payload.name,
-                            data: [payload.data]
-                        }
-                    ],
-                    activeCollection: tasks.length-1
-                }
-            } else {
-                let newTaskList = [...tasks];
-                newTaskList[activeCollection].data.push(payload.data);
+            return {
+                ...state,
+                tasks: newTaskList
+            }
+        }
+        case DELETE_TASK: {
+            const data = [...tasks[activeCollection].data.filter((item) => { return item.title !== payload})]
 
-                return {
-                    ...state,
-                    tasks: newTaskList
-                }
+            let newTaskList = [...tasks];
+            newTaskList[activeCollection].data = data;
+
+            return { 
+                ...state,
+                tasks: newTaskList
             }
         }
         default: {

@@ -1,20 +1,21 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {MaterialCommunityIcons} from '@expo/vector-icons'
+import {View, Text, ScrollView} from 'react-native';
+import {MaterialCommunityIcons, AntDesign} from '@expo/vector-icons'
 // Redux
 import { connect } from 'react-redux';
+import { deleteTask } from '../actions/taskActions';
 
 // Styles
 import { taskStyles, collectionStyles } from '../shared/appStyles';
 
-import { setActiveScreen } from '../actions/taskActions';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const Tasks = ({ tasks, activeCollection, setActiveScreen }) => {
+
+const Tasks = ({ tasks, activeCollection, deleteTask }) => {
     const collection = tasks[activeCollection];
-    setActiveScreen("Tasks");
 
     return (
-        <View style={taskStyles.body}>
+        <ScrollView style={taskStyles.body}>
             {collection ? (
             <>
                 <Text style={taskStyles.head}>{collection.name}</Text>
@@ -25,9 +26,11 @@ const Tasks = ({ tasks, activeCollection, setActiveScreen }) => {
                     <View style={collectionStyles.set}>
                         {collection.data.map((task, index) => {
                             return(
-                                <View key={index} onPress={() => alert("View collection items")} style={collectionStyles.item}>
-                                    <Text style={collectionStyles.title}>{task.title}</Text>
-                                    <Text style={collectionStyles.sub}></Text>
+                                <View key={index} onPress={() => alert("Edit task")} style={taskStyles.item}>
+                                    <Text style={taskStyles.title}>{task.title}</Text>
+                                    <TouchableOpacity onPress={() => deleteTask(task.title, index)} style={taskStyles.sub}>
+                                        <AntDesign style={[taskStyles.head, taskStyles.bin]} name="delete"/>
+                                    </TouchableOpacity>
                                 </View>
                             );
                         })}
@@ -42,15 +45,14 @@ const Tasks = ({ tasks, activeCollection, setActiveScreen }) => {
                 <Text style={taskStyles.head}>You have no collections </Text>
                 <Text style={taskStyles.text}>You have no tasks too</Text>
                 <View style={taskStyles.nullBody}>
-                    <MaterialCommunityIcons style={taskStyles.null} color="red" name='null' />
+                    <MaterialCommunityIcons style={taskStyles.null} name='null' />
                 </View>
                 </>
-            )
-                
+            )    
             }
             
 
-        </View>
+        </ScrollView>
     );
 }
 
@@ -59,4 +61,4 @@ const mapStateToProps = state => ({
     activeCollection: state.task.activeCollection
 })
 
-export default connect(mapStateToProps, {setActiveScreen})(Tasks);
+export default connect(mapStateToProps, {deleteTask})(Tasks);

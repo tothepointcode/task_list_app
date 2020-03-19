@@ -1,7 +1,10 @@
 import {
     OPEN_COLLECTION,
+    DELETE_COLLECTION,
+    EDIT_COLLECTION,
+    CREATE_COLLECTION,
     CREATE_TASK,
-    SET_ACTIVE_SCREEN
+    DELETE_TASK,
 } from '../constants/types';
 
 export const openCollection = (navigation, index) => dispatch => {
@@ -12,11 +15,27 @@ export const openCollection = (navigation, index) => dispatch => {
     navigation.navigate('Tasks');
 }
 
-export const setActiveScreen = screen => dispatch => {
-    console.log("called" , screen);
+export const createCollection = details => dispatch => {
     dispatch({
-        type: SET_ACTIVE_SCREEN,
-        payload: screen
+        type: CREATE_COLLECTION,
+        payload: details
+    })
+}
+
+export const editCollection = (index, details) => dispatch => {
+    dispatch({
+        type: EDIT_COLLECTION,
+        payload: {
+            index,
+            details
+        }
+    })
+}
+
+export const deleteCollection = index => dispatch => {
+    dispatch({
+        type: DELETE_COLLECTION,
+        payload: index
     })
 }
 
@@ -24,6 +43,13 @@ export const createTask = (details) => dispatch => {
     dispatch({
         type: CREATE_TASK,
         payload: details
+    })
+}
+
+export const deleteTask = (title, index) => dispatch => {
+    dispatch({
+        type: DELETE_TASK,
+        payload: title
     })
 }
 

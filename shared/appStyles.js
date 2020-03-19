@@ -4,7 +4,8 @@ export const colors = {
     primary: '#000',
     secondary: '#222',
     tertiary: '#f3f3f3',
-    placeholder: '#999'
+    placeholder: '#999',
+    alternative: '#111'
 }
 
 export const taskStyles = StyleSheet.create({
@@ -35,7 +36,28 @@ export const taskStyles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: 'center',
-        marginTop: -50
+        paddingVertical: 30
+    },
+    item: {
+        backgroundColor: colors.secondary,
+        padding: 20,
+        marginTop: 5,
+        marginBottom: 5,
+        borderRadius: 15,
+        flexDirection: 'row',
+        justifyContent: "space-between",
+        alignItems: "center"
+    },
+    title: {
+        color: colors.tertiary,
+        fontSize: 18,
+        width: '80%'
+    },
+    sub: {
+        padding: 10,
+    },
+    bin: {
+        color: 'red'
     }
 });
 
@@ -54,6 +76,25 @@ export const collectionStyles = StyleSheet.create({
     set: {
         margin: 15,
         marginTop: 20
+    },
+    plus: {
+        color: colors.tertiary,
+        alignItems: 'center'
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: "center"
+    },
+    plusButton: {
+        backgroundColor: colors.secondary,
+        padding: 15,
+        borderRadius: 15
+    },
+    group: {
+        backgroundColor: colors.alternative,
+        margin: 5,
+        borderRadius: 15
     }
 })
 
