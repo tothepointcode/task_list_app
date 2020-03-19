@@ -32,10 +32,10 @@ const Modification = ({ tasks, activeCollection, createTask, navigation }) => {
     }
 
     useEffect(()=> {
+
         if (tasks.length !== 0) {
             setCollection(tasks[activeCollection].name)
         }
-        console.log(tasks.length)
     })
     
     return (
@@ -67,9 +67,16 @@ const Modification = ({ tasks, activeCollection, createTask, navigation }) => {
                     />
                 </View>
                 <View style={modStyles.inputSection}>
-                    <TouchableOpacity onPress={handleSubmit} style={modStyles.button}>
-                        <Text style={modStyles.buttonText}>Create Task</Text>
-                    </TouchableOpacity>
+                    {activeTask ? (
+                        <TouchableOpacity onPress={handleSubmit} style={modStyles.button}>
+                            <Text style={modStyles.buttonText}>Update Task</Text>
+                        </TouchableOpacity>
+                    ) : (
+                        <TouchableOpacity onPress={handleSubmit} style={modStyles.button}>
+                            <Text style={modStyles.buttonText}>Create Task</Text>
+                        </TouchableOpacity>
+                    )}
+                    
                 </View>
             </>) : (
             <>
@@ -86,7 +93,7 @@ const Modification = ({ tasks, activeCollection, createTask, navigation }) => {
 
 const mapStateToProps = state => ({
   tasks: state.task.tasks,
-  activeCollection: state.task.activeCollection
+  activeCollection: state.task.activeCollection,
 });
 
 export default connect(mapStateToProps, {createTask})(Modification);

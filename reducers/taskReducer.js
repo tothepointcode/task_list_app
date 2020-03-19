@@ -4,7 +4,8 @@ import {
     EDIT_COLLECTION,
     CREATE_COLLECTION,
     CREATE_TASK,
-    DELETE_TASK
+    DELETE_TASK,
+    EDIT_TASK
 } from '../constants/types';
 
 const initialState = {
@@ -84,6 +85,14 @@ const taskReducer = (state=initialState, action) => {
             return { 
                 ...state,
                 tasks: newTaskList
+            }
+        }
+        case EDIT_TASK: {
+            let taskList = [...tasks];
+            taskList[activeCollection].data[payload.index].title = payload.task
+            return {
+                ...state,
+                tasks: taskList
             }
         }
         default: {

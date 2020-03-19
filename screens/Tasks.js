@@ -1,18 +1,36 @@
-import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, ScrollView, TextInput} from 'react-native';
 import {MaterialCommunityIcons, AntDesign} from '@expo/vector-icons'
 // Redux
 import { connect } from 'react-redux';
-import { deleteTask } from '../actions/taskActions';
+import { deleteTask, editTask } from '../actions/taskActions';
 
 // Styles
-import { taskStyles, collectionStyles } from '../shared/appStyles';
+import { taskStyles, collectionStyles, modStyles, colors } from '../shared/appStyles';
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
-const Tasks = ({ tasks, activeCollection, deleteTask }) => {
+const Tasks = ({ tasks, activeCollection, deleteTask, editTask }) => {
     const collection = tasks[activeCollection];
+
+    const [showForm, setShowForm] = useState(false);
+    const [editIndex, setEditIndex] = useState('');
+    const [task, setTask] = useState('');
+
+    const handleSubmit = () => {
+        if (task !== '') {
+            editTask(editIndex, task);
+            setShowForm(false);
+            setTask('');
+        }
+    }
+
+    const handleEdit = (index) => {
+        setTask(tasks[activeCollection].data[index].title);
+        setEditIndex(index);
+        setShowForm(true);
+    }
 
     return (
         <ScrollView style={taskStyles.body}>
@@ -21,13 +39,34 @@ const Tasks = ({ tasks, activeCollection, deleteTask }) => {
                 <Text style={taskStyles.head}>{collection.name}</Text>
                 <Text style={taskStyles.text}>You have {collection.data.length} tasks</Text>
 
+                {showForm ? (
+                <>
+                    <View style={modStyles.inputSection}>
+                        <Text style={modStyles.label}>Task</Text>
+                        <TextInput 
+                            style={modStyles.input}
+                            placeholder="eg. Tomato sauce"
+                            placeholderTextColor={colors.placeholder}
+                            selectionColor={colors.tertiary}
+                            value={task}
+                            onChangeText={text => setTask(text)}
+                        />
+                    </View>
+                    
+                    <View style={modStyles.inputSection}>
+                        <TouchableOpacity onPress={handleSubmit} style={modStyles.button}>
+                            <Text style={modStyles.buttonText}>Update Task</Text>
+                        </TouchableOpacity> 
+                    </View>
+                </>) : (<></>)}
+
                 {collection.data.length ? (
                 <>
                     <View style={collectionStyles.set}>
                         {collection.data.map((task, index) => {
                             return(
-                                <View key={index} onPress={() => alert("Edit task")} style={taskStyles.item}>
-                                    <Text style={taskStyles.title}>{task.title}</Text>
+                                <View key={index} style={taskStyles.item}>
+                                    <Text onPress={() => handleEdit(index)} style={taskStyles.title}>{task.title}</Text>
                                     <TouchableOpacity onPress={() => deleteTask(task.title, index)} style={taskStyles.sub}>
                                         <AntDesign style={[taskStyles.head, taskStyles.bin]} name="delete"/>
                                     </TouchableOpacity>
@@ -61,4 +100,4 @@ const mapStateToProps = state => ({
     activeCollection: state.task.activeCollection
 })
 
-export default connect(mapStateToProps, {deleteTask})(Tasks);
+export default connect(mapStateToProps, {deleteTask, editTask})(Tasks);

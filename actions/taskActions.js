@@ -5,6 +5,7 @@ import {
     CREATE_COLLECTION,
     CREATE_TASK,
     DELETE_TASK,
+    EDIT_TASK
 } from '../constants/types';
 
 export const openCollection = (navigation, index) => dispatch => {
@@ -50,6 +51,16 @@ export const deleteTask = (title, index) => dispatch => {
     dispatch({
         type: DELETE_TASK,
         payload: title
+    })
+}
+
+export const editTask = (index, task) => dispatch => {
+    dispatch({
+        type: EDIT_TASK,
+        payload: {
+            index,
+            task
+        }
     })
 }
 
