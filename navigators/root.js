@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 // Screens
 import BottomNav from './home';
+import HeaderSwitch from '../shared/HeaderSwitch';
 
 // Styles
 import {colors} from '../shared/appStyles';
@@ -27,6 +28,7 @@ const RootStack = () => {
                     headerTitleStyle: {
                         fontWeight: 'bold',
                     },
+                    headerRight: () => (<HeaderSwitch />)
                 }}
             >
                 <Stack.Screen name="Home" component={BottomNav} />

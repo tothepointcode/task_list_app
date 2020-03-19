@@ -5,7 +5,8 @@ import {
     CREATE_COLLECTION,
     CREATE_TASK,
     DELETE_TASK,
-    EDIT_TASK
+    EDIT_TASK,
+    TOGGLE_THEME
 } from '../constants/types';
 
 export const openCollection = (navigation, index) => dispatch => {
@@ -62,5 +63,20 @@ export const editTask = (index, task) => dispatch => {
             task
         }
     })
+}
+
+export const toggleTheme = (value) => dispatch => {
+    if (value) {
+        dispatch({
+            type: TOGGLE_THEME,
+            payload: "light"
+        })
+    } else {
+        dispatch({
+            type: TOGGLE_THEME,
+            payload: "dark"
+        })
+    }
+    
 }
 

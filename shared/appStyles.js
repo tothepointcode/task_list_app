@@ -1,11 +1,32 @@
 import { StyleSheet } from 'react-native';
 
+import store from '../store';
+const theme = store.getState().task.theme;
+
+let colorList = {};
+
+console.log(theme);
+
+if (theme === "dark") {
+    colorList = {
+        primary: '#000',
+        secondary: '#222',
+        tertiary: '#f3f3f3',
+        placeholder: '#999',
+        alternative: '#111'
+    }
+} else {
+    colorList = {
+        primary: '#fff',
+        secondary: '#eee',
+        tertiary: '#121212',
+        placeholder: '#999',
+        alternative: '#efefef'
+    }
+}
+
 export const colors = {
-    primary: '#000',
-    secondary: '#222',
-    tertiary: '#f3f3f3',
-    placeholder: '#999',
-    alternative: '#111'
+    ...colorList
 }
 
 export const taskStyles = StyleSheet.create({
@@ -122,7 +143,17 @@ export const modStyles = StyleSheet.create({
     },
     buttonText: {
         padding: 15,
-        textAlign: "center"
+        textAlign: "center",
+        color: colors.primary
     }
 })
 
+export const headerStyles = StyleSheet.create({
+    view: {
+        margin: 10
+    },
+    text: {
+        color: colors.tertiary,
+        textTransform: "capitalize"
+    }
+})

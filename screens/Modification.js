@@ -67,16 +67,9 @@ const Modification = ({ tasks, activeCollection, createTask, navigation }) => {
                     />
                 </View>
                 <View style={modStyles.inputSection}>
-                    {activeTask ? (
-                        <TouchableOpacity onPress={handleSubmit} style={modStyles.button}>
-                            <Text style={modStyles.buttonText}>Update Task</Text>
-                        </TouchableOpacity>
-                    ) : (
-                        <TouchableOpacity onPress={handleSubmit} style={modStyles.button}>
-                            <Text style={modStyles.buttonText}>Create Task</Text>
-                        </TouchableOpacity>
-                    )}
-                    
+                    <TouchableOpacity onPress={handleSubmit} style={modStyles.button}>
+                        <Text style={modStyles.buttonText}>Create Task</Text>
+                    </TouchableOpacity>                    
                 </View>
             </>) : (
             <>

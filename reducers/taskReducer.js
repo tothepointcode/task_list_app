@@ -5,7 +5,8 @@ import {
     CREATE_COLLECTION,
     CREATE_TASK,
     DELETE_TASK,
-    EDIT_TASK
+    EDIT_TASK,
+    TOGGLE_THEME
 } from '../constants/types';
 
 const initialState = {
@@ -13,7 +14,6 @@ const initialState = {
     theme: "dark",
     activeScreen: "Tasks",
     activeCollection: 0,
-    activeTask: null,
     tasks: [
         {
             name: "Groceries",
@@ -38,7 +38,7 @@ const initialState = {
 
 const taskReducer = (state=initialState, action) => {
     const { type, payload } = action;
-    const { activeCollection, tasks} = state;
+    const { activeCollection, tasks, theme} = state;
     
     switch (type) {
         case OPEN_COLLECTION: {
@@ -93,6 +93,12 @@ const taskReducer = (state=initialState, action) => {
             return {
                 ...state,
                 tasks: taskList
+            }
+        }
+        case TOGGLE_THEME: {
+            return {
+                ...state,
+                theme: payload
             }
         }
         default: {
