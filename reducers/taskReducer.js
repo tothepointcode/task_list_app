@@ -6,14 +6,16 @@ import {
     CREATE_TASK,
     DELETE_TASK,
     EDIT_TASK,
-    TOGGLE_THEME
+    TOGGLE_THEME,
+    SETUP_PROGRESS
 } from '../constants/types';
 
 const initialState = {
-    isLoading: false,
+    isLoading: true,
     theme: "dark",
     activeScreen: "Tasks",
     activeCollection: 0,
+    progressData: [],
     tasks: [
         {
             name: "Groceries",
@@ -38,9 +40,21 @@ const initialState = {
 
 const taskReducer = (state=initialState, action) => {
     const { type, payload } = action;
-    const { activeCollection, tasks, theme} = state;
+    const { activeCollection, tasks, theme, progressData} = state;
     
     switch (type) {
+        case SETUP_PROGRESS: {
+            const data = [];
+            tasks.forEach(collection => {
+                data.push({length: collection.data.length, done: 0})
+            })
+            return{
+                ...state,
+                progressData: data,
+                isLoading: false
+            }
+
+        }
         case OPEN_COLLECTION: {
             return {
                 ...state,
@@ -50,13 +64,15 @@ const taskReducer = (state=initialState, action) => {
         case CREATE_COLLECTION: {
             return { 
                 ...state,
-                tasks: [...tasks, {name: payload, data: []}]
+                tasks: [...tasks, {name: payload, data: []}],
+                progressData: [...progressData, {length: 0, done: 0}]
             }
         }
         case DELETE_COLLECTION: {
             return {
                 ...state,
-                tasks: [...tasks.filter((item, index) => {return index !== payload })]
+                tasks: [...tasks.filter((item, index) => {return index !== payload })],
+                progressData: [...progressData.filter((item, index) => {return index !== payload })]
             }
         }
         case EDIT_COLLECTION: {
@@ -71,9 +87,13 @@ const taskReducer = (state=initialState, action) => {
             let newTaskList = [...tasks];
             newTaskList[activeCollection].data.push(payload.data);
 
+            let prog = [...progressData];
+            prog[activeCollection].length += 1;
+
             return {
                 ...state,
-                tasks: newTaskList
+                tasks: newTaskList,
+                progressData: prog
             }
         }
         case DELETE_TASK: {
@@ -82,9 +102,13 @@ const taskReducer = (state=initialState, action) => {
             let newTaskList = [...tasks];
             newTaskList[activeCollection].data = data;
 
+            let prog = [...progressData];
+            prog[activeCollection].done += 1;
+
             return { 
                 ...state,
-                tasks: newTaskList
+                tasks: newTaskList,
+                progressData: prog
             }
         }
         case EDIT_TASK: {

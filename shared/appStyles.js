@@ -5,8 +5,6 @@ const theme = store.getState().task.theme;
 
 let colorList = {};
 
-console.log(theme);
-
 if (theme === "dark") {
     colorList = {
         primary: '#000',
@@ -79,7 +77,7 @@ export const taskStyles = StyleSheet.create({
     },
     bin: {
         color: 'red'
-    }
+    },
 });
 
 export const collectionStyles = StyleSheet.create({
@@ -155,5 +153,30 @@ export const headerStyles = StyleSheet.create({
     text: {
         color: colors.tertiary,
         textTransform: "capitalize"
+    }
+})
+
+export const progressStyles = StyleSheet.create({
+    progress: {
+        backgroundColor: colors.secondary,
+        height: 7,
+        margin: 10,
+        borderRadius: 25,
+        borderWidth: 1,
+        borderColor: colors.secondary,
+        flex: 9
+    },
+    bar: {
+        backgroundColor: colors.tertiary,
+        width: '50%',
+        height: '100%',
+        borderRadius: 25
+    },
+    percentage: {
+        color: colors.tertiary,
+        flex: 1
+    },
+    field: {
+        flexDirection: "row"
     }
 })

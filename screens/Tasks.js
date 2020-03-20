@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, ScrollView, TextInput} from 'react-native';
 import {MaterialCommunityIcons, AntDesign} from '@expo/vector-icons'
+
 // Redux
 import { connect } from 'react-redux';
 import { deleteTask, editTask } from '../actions/taskActions';
@@ -10,8 +11,9 @@ import { taskStyles, collectionStyles, modStyles, colors } from '../shared/appSt
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import Progress from '../shared/Progress';
 
-const Tasks = ({ tasks, activeCollection, deleteTask, editTask }) => {
+const Tasks = ({ tasks, activeCollection, deleteTask, editTask, progressData }) => {
     const collection = tasks[activeCollection];
 
     const [showForm, setShowForm] = useState(false);
@@ -32,12 +34,19 @@ const Tasks = ({ tasks, activeCollection, deleteTask, editTask }) => {
         setShowForm(true);
     }
 
+    const calculatePercentage = () => {
+        let length = progressData[activeCollection].length;
+        let done = progressData[activeCollection].done;
+        let percentage = Math.round((done / length) * 100);
+
+        return `${percentage}%`;
+    }
+
     return (
         <ScrollView style={taskStyles.body}>
             {collection ? (
             <>
                 <Text style={taskStyles.head}>{collection.name}</Text>
-                <Text style={taskStyles.text}>You have {collection.data.length} tasks</Text>
 
                 {showForm ? (
                 <>
@@ -62,6 +71,7 @@ const Tasks = ({ tasks, activeCollection, deleteTask, editTask }) => {
 
                 {collection.data.length ? (
                 <>
+                    <Progress value={calculatePercentage()} />
                     <View style={collectionStyles.set}>
                         {collection.data.map((task, index) => {
                             return(
@@ -76,7 +86,9 @@ const Tasks = ({ tasks, activeCollection, deleteTask, editTask }) => {
                     </View>
                 </>
                 ) : (
-                <></>
+                <>
+                    <Text style={taskStyles.text}>You have no tasks</Text>
+                </>
                 )} 
             </>
             ) : (
@@ -97,7 +109,8 @@ const Tasks = ({ tasks, activeCollection, deleteTask, editTask }) => {
 
 const mapStateToProps = state => ({
     tasks: state.task.tasks,
-    activeCollection: state.task.activeCollection
+    activeCollection: state.task.activeCollection,
+    progressData: state.task.progressData
 })
 
 export default connect(mapStateToProps, {deleteTask, editTask})(Tasks);
