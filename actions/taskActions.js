@@ -6,8 +6,15 @@ import {
     CREATE_TASK,
     DELETE_TASK,
     EDIT_TASK,
-    TOGGLE_THEME
+    TOGGLE_THEME,
+    SETUP_PROGRESS
 } from '../constants/types';
+
+export const setupProgress = () => dispatch => {
+    dispatch({
+        type: SETUP_PROGRESS
+    })
+}
 
 export const openCollection = (navigation, index) => dispatch => {
     dispatch({
