@@ -1,30 +1,30 @@
 import { StyleSheet } from 'react-native';
 
 import store from '../store';
-const theme = store.getState().task.theme;
+const theme = store.getState().task.colorSet;
 
 let colorList = {};
 
-if (theme === 'dark') {
-  colorList = {
-    primary: '#000',
-    secondary: '#222',
-    tertiary: '#f3f3f3',
-    placeholder: '#999',
-    alternative: '#111',
-  };
-} else {
-  colorList = {
-    primary: '#fff',
-    secondary: '#eee',
-    tertiary: '#121212',
-    placeholder: '#999',
-    alternative: '#efefef',
-  };
-}
+// if (theme === 'dark') {
+//   colorList = {
+//     primary: '#000',
+//     secondary: '#222',
+//     tertiary: '#f3f3f3',
+//     placeholder: '#999',
+//     alternative: '#111',
+//   };
+// } else {
+//   colorList = {
+//     primary: '#fff',
+//     secondary: '#eee',
+//     tertiary: '#121212',
+//     placeholder: '#999',
+//     alternative: '#efefef',
+//   };
+// }
 
 export const colors = {
-  ...colorList,
+  ...theme,
 };
 
 export const taskStyles = StyleSheet.create({

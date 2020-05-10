@@ -13,6 +13,13 @@ import {
 const initialState = {
   isLoading: true,
   theme: 'dark',
+  colorSet: {
+    primary: '#000',
+    secondary: '#222',
+    tertiary: '#f3f3f3',
+    placeholder: '#999',
+    alternative: '#111',
+  },
   activeScreen: 'Tasks',
   activeCollection: 0,
   progressData: [],
@@ -128,9 +135,11 @@ const taskReducer = (state = initialState, action) => {
       };
     }
     case TOGGLE_THEME: {
+      const { name, list } = payload;
       return {
         ...state,
-        theme: payload,
+        theme: name,
+        colorSet: list,
       };
     }
     default: {
