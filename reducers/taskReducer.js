@@ -84,16 +84,18 @@ const taskReducer = (state=initialState, action) => {
             }
         }
         case CREATE_TASK: {
+            const { collectionId } = payload;
             let newTaskList = [...tasks];
-            newTaskList[activeCollection].data.push(payload.data);
+            newTaskList[collectionId].data.push(payload.data);
 
             let prog = [...progressData];
-            prog[activeCollection].length += 1;
+            prog[collectionId].length += 1;
 
             return {
                 ...state,
                 tasks: newTaskList,
-                progressData: prog
+                progressData: prog,
+                activeCollection: collectionId
             }
         }
         case DELETE_TASK: {

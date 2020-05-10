@@ -1,9 +1,9 @@
 {
-  "devToolsPort": 19002,
   "expoServerPort": 19000,
+  "devToolsPort": 19002,
   "packagerPort": 19001,
-  "packagerPid": 8324,
+  "packagerPid": 20504,
   "expoServerNgrokUrl": "https://v2-3vv.cobynnha.tasklistapp.exp.direct",
   "packagerNgrokUrl": "https://packager.v2-3vv.cobynnha.tasklistapp.exp.direct",
-  "ngrokPid": 24148
+  "ngrokPid": 21968
 }
