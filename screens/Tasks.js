@@ -34,6 +34,15 @@ const Tasks = ({ tasks, activeCollection, deleteTask, editTask, progressData }) 
     setShowForm(true);
   };
 
+  const toggleShow = (value, setValue) => {
+    if (value) {
+      setValue(false);
+      setEditIndex();
+    } else {
+      setValue(true);
+    }
+  };
+
   const calculatePercentage = () => {
     let length = progressData[activeCollection].length;
     let done = progressData[activeCollection].done;
@@ -46,7 +55,15 @@ const Tasks = ({ tasks, activeCollection, deleteTask, editTask, progressData }) 
     <ScrollView style={taskStyles.body}>
       {collection ? (
         <>
-          <Text style={taskStyles.head}>{collection.name}</Text>
+          <View style={collectionStyles.header}>
+            <Text style={taskStyles.head}>{collection.name}</Text>
+            <TouchableOpacity
+              onPress={() => toggleShow(showForm, setShowForm)}
+              style={[collectionStyles.plusButton, {backgroundColor: 'red' ,display: showForm ? 'flex' : 'none' }]}
+            >
+              <AntDesign style={[collectionStyles.plus]} name='close' />
+            </TouchableOpacity>
+          </View>
 
           {showForm && (
             <>
