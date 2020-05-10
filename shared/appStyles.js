@@ -30,16 +30,17 @@ export const colors = {
 export const taskStyles = StyleSheet.create({
     tab: {
         backgroundColor: colors.primary,
-        height: 60
+        height: 60,
+        borderTopWidth: 0
     },
     body: {
         backgroundColor: colors.primary,
-        padding: 15,
+        padding: 25,
         flex: 1,
         margin: 0
     },
     text: {
-        color: colors.tertiary
+        color: colors.tertiary,
     },
     head: {
         color: colors.tertiary,
@@ -93,33 +94,41 @@ export const collectionStyles = StyleSheet.create({
         fontSize: 18
     },
     set: {
-        margin: 15,
+        // margin: 15,
         marginTop: 20
     },
-    plus: {
-        color: colors.tertiary,
-        alignItems: 'center'
-    },
+    
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: "center"
+        alignItems: "flex-start",
+    },
+    head: {
+        color: colors.tertiary,
+        fontSize: 22,
+        letterSpacing: 1
     },
     plusButton: {
         backgroundColor: colors.secondary,
-        padding: 15,
+        padding: 10,
         borderRadius: 15
+    },
+    plus: {
+        color: colors.tertiary,
+        alignItems: 'center',
+        fontSize: 22
     },
     group: {
         backgroundColor: colors.alternative,
-        margin: 5,
+        marginVertical: 5,
         borderRadius: 15
     }
 })
 
 export const modStyles = StyleSheet.create({
     inputSection: {
-        marginVertical: 5
+        marginVertical: 5,
+        marginTop: 10
     },
     input: {
         backgroundColor: colors.secondary,
@@ -132,7 +141,8 @@ export const modStyles = StyleSheet.create({
     },
     label: {
         color: colors.tertiary,
-        padding: 10
+        padding: 10,
+        paddingHorizontal: 0
     },
     button: {
         backgroundColor: colors.tertiary,
@@ -161,10 +171,11 @@ export const progressStyles = StyleSheet.create({
         backgroundColor: colors.secondary,
         height: 7,
         margin: 10,
+        marginLeft: 0,
         borderRadius: 25,
         borderWidth: 1,
         borderColor: colors.secondary,
-        flex: 9
+        width: '88%'
     },
     bar: {
         backgroundColor: colors.tertiary,
@@ -174,7 +185,7 @@ export const progressStyles = StyleSheet.create({
     },
     percentage: {
         color: colors.tertiary,
-        flex: 1
+        width: '12%'
     },
     field: {
         flexDirection: "row"

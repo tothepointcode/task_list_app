@@ -38,6 +38,7 @@ const RootStack = ({isLoading, setupProgress}) => {
                     headerTintColor: colors.tertiary,
                     headerTitleStyle: {
                         fontWeight: 'bold',
+                        padding: 10
                     },
                     headerRight: () => (<HeaderSwitch />)
                 }}
