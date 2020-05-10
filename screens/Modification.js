@@ -37,14 +37,14 @@ const Modification = ({ tasks, activeCollection, createTask, navigation }) => {
       setCollection(tasks[activeCollection].name);
       let array = [];
       tasks.forEach((collection, index) => {
-          array.push({
-              label: collection.name,
-              value: index
-          })
-      })
+        array.push({
+          label: collection.name,
+          value: index,
+        });
+      });
       setCollectionList(array);
     }
-  }, [activeCollection]);
+  }, [tasks]);
 
   return (
     <ScrollView style={taskStyles.body}>
