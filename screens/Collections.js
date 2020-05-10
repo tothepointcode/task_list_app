@@ -34,16 +34,28 @@ const Collections = ({ tasks, navigation, openCollection, createCollection, edit
     setShowForm(true);
   };
 
+  const toggleShow = (value, setValue) => {
+    if (value) {
+      setValue(false);
+      setEditMode(false);
+      setNewCollection();
+    } else {
+      setValue(true);
+    }
+  };
+
   return (
     <ScrollView style={taskStyles.body}>
       <View style={collectionStyles.header}>
         <Text style={collectionStyles.head}>Collections</Text>
-        <TouchableOpacity onPress={() => setShowForm(true)} style={collectionStyles.plusButton}>
-          <AntDesign style={[collectionStyles.plus]} name="plus" />
+        <TouchableOpacity
+          onPress={() => toggleShow(showForm, setShowForm)}
+          style={[collectionStyles.plusButton, { backgroundColor: showForm ? 'red' : colors.secondary }]}
+        >
+          <AntDesign style={[collectionStyles.plus]} name={showForm ? 'close' : 'plus'} />
         </TouchableOpacity>
       </View>
       <Text style={taskStyles.text}>You have {tasks.length} collections</Text>
-
 
       {showForm ? (
         <>
