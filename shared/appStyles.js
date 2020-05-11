@@ -35,6 +35,13 @@ export const taskStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    minHeight: 90
+  },
+  itemDone: {
+    opacity: 0.5
+  },
+  itemDoneText: {
+    textDecorationLine: 'line-through'
   },
   title: {
     fontSize: 18,

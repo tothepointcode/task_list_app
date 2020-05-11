@@ -11,7 +11,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 // Styles
 import { taskStyles, modStyles } from '../shared/appStyles';
 
-const Modification = ({ tasks, activeCollection, createTask, navigation, colors }) => {
+const Modification = ({ tasks, createTask, navigation, colors }) => {
   const [collection, setCollection] = useState('');
   const [task, setTask] = useState('');
   const [collectionList, setCollectionList] = useState([]);
@@ -34,7 +34,6 @@ const Modification = ({ tasks, activeCollection, createTask, navigation, colors 
 
   useEffect(() => {
     if (tasks.length !== 0) {
-      setCollection(tasks[activeCollection].name);
       let array = [];
       tasks.forEach((collection, index) => {
         array.push({
@@ -64,8 +63,8 @@ const Modification = ({ tasks, activeCollection, createTask, navigation, colors 
                   color: placeholder,
                 }}
                 items={collectionList}
-                onValueChange={(value) => {
-                  setCollection(value);
+                onValueChange={(_, index) => {
+                  setCollection(index - 1);
                 }}
                 placeholderTextColor={placeholder}
                 style={{

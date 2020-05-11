@@ -51,7 +51,7 @@ const Tasks = ({ tasks, activeCollection, deleteTask, editTask, progressData, co
     return `${percentage}%`;
   };
 
-  const { primary, secondary, tertiary, placeholder, alternative } = colors;
+  const { primary, secondary, tertiary, placeholder } = colors;
 
   return (
     <ScrollView style={[taskStyles.body, { backgroundColor: primary }]}>
@@ -95,13 +95,13 @@ const Tasks = ({ tasks, activeCollection, deleteTask, editTask, progressData, co
               <View style={collectionStyles.set}>
                 {collection.data.map((task, index) => {
                   return (
-                    <View key={index} style={[taskStyles.item, { backgroundColor: secondary }]}>
-                      <Text onPress={() => handleEdit(index)} style={[taskStyles.title, { color: tertiary }]}>
+                    <View key={index} style={[taskStyles.item, task.done && taskStyles.itemDone, { backgroundColor: secondary }]}>
+                      <Text onPress={() => handleEdit(index)} style={[taskStyles.title, task.done && taskStyles.itemDoneText, { color: tertiary}]}>
                         {task.title}
                       </Text>
-                      <TouchableOpacity onPress={() => deleteTask(task.title, index)} style={taskStyles.sub}>
+                      {!task.done && <TouchableOpacity onPress={() => deleteTask(task.title, index)} style={taskStyles.sub}>
                         <AntDesign style={[taskStyles.head, taskStyles.bin]} name="delete" />
-                      </TouchableOpacity>
+                      </TouchableOpacity> }
                     </View>
                   );
                 })}

@@ -95,10 +95,10 @@ const taskReducer = (state = initialState, action) => {
     case CREATE_TASK: {
       const { collectionId } = payload;
       let newTaskList = [...tasks];
-      newTaskList[collectionId].data.push(payload.data);
+      newTaskList[collectionId || activeCollection].data.unshift(payload.data);
 
       let prog = [...progressData];
-      prog[collectionId].length += 1;
+      prog[collectionId || activeCollection].length += 1;
 
       return {
         ...state,
@@ -112,6 +112,7 @@ const taskReducer = (state = initialState, action) => {
         ...tasks[activeCollection].data.filter((item) => {
           return item.title !== payload;
         }),
+        {title: payload, done: true}
       ];
 
       let newTaskList = [...tasks];
