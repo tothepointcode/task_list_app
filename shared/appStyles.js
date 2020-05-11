@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-import store from '../store';
-
 export const taskStyles = StyleSheet.create({
   tab: {
     height: 60,

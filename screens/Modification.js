@@ -77,7 +77,7 @@ const Modification = ({ tasks, activeCollection, createTask, navigation, colors 
                     borderRadius: 15,
                     paddingVertical: 10,
                     paddingHorizontal: 15,
-                    paddingRight: 30
+                    paddingRight: 30,
                   },
                   inputIOS: {
                     borderColor: tertiary,

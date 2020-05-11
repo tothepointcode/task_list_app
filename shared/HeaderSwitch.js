@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Switch, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 
 import { connect } from 'react-redux';
 
@@ -9,9 +9,9 @@ import { toggleTheme } from '../actions/taskActions';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const HeaderSwitch = ({ toggleTheme, theme, colors }) => {
+const HeaderSwitch = ({ toggleTheme, colors }) => {
   const [status, setStatus] = useState(false);
-  const { primary, secondary, tertiary, placeholder, alternative } = colors;
+  const { tertiary } = colors;
 
   const handlePress = () => {
     toggleTheme(!status);

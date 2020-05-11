@@ -98,20 +98,20 @@ const Collections = ({
         <View style={collectionStyles.set}>
           {tasks.map((collection, index) => {
             return (
-              <View key={index} style={[collectionStyles.group, {backgroundColor: alternative}]}>
+              <View key={index} style={[collectionStyles.group, { backgroundColor: alternative }]}>
                 <TouchableOpacity
                   key={index}
                   onPress={() => openCollection(navigation, index)}
-                  style={[collectionStyles.item, {backgroundColor: secondary}]}
+                  style={[collectionStyles.item, { backgroundColor: secondary }]}
                 >
-                  <Text style={[collectionStyles.title, {color: tertiary}]}>{collection.name}</Text>
+                  <Text style={[collectionStyles.title, { color: tertiary }]}>{collection.name}</Text>
                 </TouchableOpacity>
                 <View style={collectionStyles.header}>
                   <TouchableOpacity
                     onPress={() => handleEdit(index)}
                     style={[taskStyles.sub, { paddingHorizontal: 20 }]}
                   >
-                    <AntDesign style={[taskStyles.head, taskStyles.edit, {color: tertiary}]} name="edit" />
+                    <AntDesign style={[taskStyles.head, taskStyles.edit, { color: tertiary }]} name="edit" />
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => deleteCollection(index)}
@@ -127,7 +127,7 @@ const Collections = ({
       ) : (
         <>
           <View style={taskStyles.nullBody}>
-            <MaterialCommunityIcons style={[taskStyles.null, {color: secondary}]} name="null" />
+            <MaterialCommunityIcons style={[taskStyles.null, { color: secondary }]} name="null" />
           </View>
         </>
       )}

@@ -15,46 +15,44 @@ import Splash from '../screens/Splash';
 
 const Stack = createStackNavigator();
 
-const RootStack = ({isLoading, setupProgress, colors}) => {
-    setTimeout(() => setupProgress(), 2000);
-    
-    if (isLoading) {
-        return <Splash />
-    } else {
-    
+const RootStack = ({ isLoading, setupProgress, colors }) => {
+  setTimeout(() => setupProgress(), 2000);
+
+  if (isLoading) {
+    return <Splash />;
+  } else {
     return (
-        <NavigationContainer>
-            <Stack.Navigator
-                initialRouteName="Collections"
-                screenOptions={{
-                    headerShown: true,
-                    title: 'Task List',
-                    headerStyle: {
-                        backgroundColor: colors.primary,
-                    },
-                    headerTintColor: colors.tertiary,
-                    headerTitleStyle: {
-                        fontWeight: 'bold',
-                        padding: 10
-                    },
-                    headerRight: () => (<HeaderSwitch />)
-    ,headerRightContainerStyle: {
-        padding: 10,
-        paddingRight: 7
-    }
-                }}
-            >
-                <Stack.Screen name="Home" component={BottomNav} />
-            </Stack.Navigator>
-        </NavigationContainer>
-    )
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Collections"
+          screenOptions={{
+            headerShown: true,
+            title: 'Task List',
+            headerStyle: {
+              backgroundColor: colors.primary,
+            },
+            headerTintColor: colors.tertiary,
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              padding: 10,
+            },
+            headerRight: () => <HeaderSwitch />,
+            headerRightContainerStyle: {
+              padding: 10,
+              paddingRight: 7,
+            },
+          }}
+        >
+          <Stack.Screen name="Home" component={BottomNav} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
+};
 
-    }
-}
+const mapStateToProps = (state) => ({
+  isLoading: state.task.isLoading,
+  colors: state.task.colorSet,
+});
 
-const mapStateToProps = state => ({
-    isLoading: state.task.isLoading,
-    colors: state.task.colorSet,
-})
-
-export default connect(mapStateToProps, {setupProgress})(RootStack);
+export default connect(mapStateToProps, { setupProgress })(RootStack);
