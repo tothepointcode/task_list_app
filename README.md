@@ -15,4 +15,4 @@ An app for keeping track of tasks to be performed. Related tasks are kept in col
 
 ## Published
 
-Pleae find deployed app on expo [here](https://exp.host/@cobynnha/taskListApp).
+Please find deployed app on expo [here](https://exp.host/@cobynnha/taskListApp).
