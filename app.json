@@ -2,7 +2,7 @@
   "name": "taskListApp",
   "displayName": "taskListApp",
   "expo": {
-    "name": "taskListApp",
+    "name": "Task List App",
     "slug": "taskListApp",
     "privacy": "unlisted",
     "sdkVersion": "36.0.0",
@@ -12,6 +12,8 @@
       "ios",
       "android",
       "web"
-    ]
+    ],
+    "description": "An app for keeping a collection of tasks to be performed.",
+    "githubUrl": "https://github.com/TerraCobynnha/task_list_app"
   }
 }

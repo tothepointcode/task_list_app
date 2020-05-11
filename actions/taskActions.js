@@ -49,7 +49,6 @@ export const deleteCollection = (index) => (dispatch) => {
 };
 
 export const createTask = (details) => (dispatch) => {
-  console.log(details);
   dispatch({
     type: CREATE_TASK,
     payload: details,
