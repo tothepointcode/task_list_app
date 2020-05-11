@@ -9,9 +9,9 @@ import { createTask } from '../actions/taskActions';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Styles
-import { taskStyles, modStyles, colors, pickerSelectStyles } from '../shared/appStyles';
+import { taskStyles, modStyles } from '../shared/appStyles';
 
-const Modification = ({ tasks, activeCollection, createTask, navigation }) => {
+const Modification = ({ tasks, activeCollection, createTask, navigation, colors }) => {
   const [collection, setCollection] = useState('');
   const [task, setTask] = useState('');
   const [collectionList, setCollectionList] = useState([]);
@@ -46,27 +46,48 @@ const Modification = ({ tasks, activeCollection, createTask, navigation }) => {
     }
   }, [tasks]);
 
+  const { primary, secondary, tertiary, placeholder, alternative } = colors;
+
   return (
-    <ScrollView style={taskStyles.body}>
+    <ScrollView style={[taskStyles.body, { backgroundColor: primary }]}>
       <>
-        <Text style={taskStyles.head}>Add a task</Text>
+        <Text style={[taskStyles.head, { color: tertiary }]}>Add a task</Text>
 
         {tasks.length ? (
           <>
             <View style={modStyles.inputSection}>
-              <Text style={modStyles.label}>Collection</Text>
+              <Text style={[modStyles.label, { color: tertiary }]}>Collection</Text>
               <RNPickerSelect
                 placeholder={{
                   label: 'Select a collection...',
                   value: null,
-                  color: colors.placeholder,
+                  color: placeholder,
                 }}
                 items={collectionList}
                 onValueChange={(value) => {
                   setCollection(value);
                 }}
+                placeholderTextColor={placeholder}
                 style={{
-                  ...pickerSelectStyles,
+                  inputAndroid: {
+                    borderColor: tertiary,
+                    backgroundColor: secondary,
+                    color: tertiary,
+                    borderWidth: 1,
+                    borderRadius: 15,
+                    paddingVertical: 10,
+                    paddingHorizontal: 15,
+                    paddingRight: 30
+                  },
+                  inputIOS: {
+                    borderColor: tertiary,
+                    color: tertiary,
+                    paddingVertical: 12,
+                    paddingHorizontal: 10,
+                    borderWidth: 1,
+                    borderRadius: 15,
+                    paddingRight: 30,
+                  },
                   iconContainer: {
                     top: 12,
                     right: 12,
@@ -74,32 +95,32 @@ const Modification = ({ tasks, activeCollection, createTask, navigation }) => {
                 }}
                 useNativeAndroidPickerStyle={false}
                 Icon={() => {
-                  return <Ionicons name="ios-arrow-down" size={24} color={colors.placeholder} />;
+                  return <Ionicons name="ios-arrow-down" size={24} color={placeholder} />;
                 }}
               />
             </View>
             <View style={modStyles.inputSection}>
-              <Text style={modStyles.label}>Task</Text>
+              <Text style={[modStyles.label, { color: tertiary }]}>Task</Text>
               <TextInput
-                style={modStyles.input}
+                style={[modStyles.input, { color: tertiary, backgroundColor: secondary, borderColor: tertiary }]}
                 placeholder="eg. Purchase cotton napkins"
-                placeholderTextColor={colors.placeholder}
-                selectionColor={colors.tertiary}
+                placeholderTextColor={placeholder}
+                selectionColor={tertiary}
                 value={task}
                 onChangeText={(text) => setTask(text)}
               />
             </View>
             <View style={modStyles.inputSection}>
-              <TouchableOpacity onPress={handleSubmit} style={modStyles.button}>
-                <Text style={modStyles.buttonText}>Create Task</Text>
+              <TouchableOpacity onPress={handleSubmit} style={[modStyles.button, { backgroundColor: tertiary }]}>
+                <Text style={[modStyles.buttonText, { color: primary }]}>Create Task</Text>
               </TouchableOpacity>
             </View>
           </>
         ) : (
           <>
-            <Text style={taskStyles.text}>Create a collection to add a task.</Text>
+            <Text style={[taskStyles.text, { color: tertiary }]}>Create a collection to add a task.</Text>
             <View style={taskStyles.nullBody}>
-              <MaterialCommunityIcons style={taskStyles.null} name="null" />
+              <MaterialCommunityIcons style={[taskStyles.null, { color: secondary }]} name="null" />
             </View>
           </>
         )}
@@ -111,6 +132,7 @@ const Modification = ({ tasks, activeCollection, createTask, navigation }) => {
 const mapStateToProps = (state) => ({
   tasks: state.task.tasks,
   activeCollection: state.task.activeCollection,
+  colors: state.task.colorSet,
 });
 
 export default connect(mapStateToProps, { createTask })(Modification);

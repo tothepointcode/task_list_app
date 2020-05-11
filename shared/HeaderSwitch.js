@@ -1,32 +1,41 @@
-import React, {useState} from 'react';
-import { View, Text, Switch, Button } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Switch, TouchableOpacity } from 'react-native';
 
 import { connect } from 'react-redux';
 
-import { colors, headerStyles } from './appStyles';
+import { headerStyles } from './appStyles';
 
 import { toggleTheme } from '../actions/taskActions';
 
-const HeaderSwitch = ({ toggleTheme, theme }) => {
-    const [status, setStatus] = useState(false);
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-    return (
-        <View style={headerStyles.view}>
-            <Text style={headerStyles.text}>{theme}</Text>
-            <Switch
-                value={status}
-                onValueChange={value => {
-                    toggleTheme(value);
-                    setStatus(value);
-                }}
-                thumbColor='red'
-            />
-        </View>
-    );
-}
+const HeaderSwitch = ({ toggleTheme, theme, colors }) => {
+  const [status, setStatus] = useState(false);
+  const { primary, secondary, tertiary, placeholder, alternative } = colors;
 
-const mapStateToProps = state => ({
-    theme: state.task.theme
-})
+  const handlePress = () => {
+    toggleTheme(!status);
+    setStatus(!status);
+  };
 
-export default connect(mapStateToProps, {toggleTheme})(HeaderSwitch);
+  return (
+    <View style={headerStyles.view}>
+      <TouchableOpacity
+        style={{
+          backgroundColor: 'transparent',
+          padding: 10,
+        }}
+        onPress={handlePress}
+      >
+        <MaterialCommunityIcons name={!status ? 'weather-night' : 'weather-sunny'} size={27} color={tertiary} />
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const mapStateToProps = (state) => ({
+  theme: state.task.theme,
+  colors: state.task.colorSet,
+});
+
+export default connect(mapStateToProps, { toggleTheme })(HeaderSwitch);

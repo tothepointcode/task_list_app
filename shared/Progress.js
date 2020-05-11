@@ -1,15 +1,26 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 
-import {progressStyles} from './appStyles';
+// Redux
+import { connect } from 'react-redux';
 
-const Progress = ({value}) => {
-    return(
-        <View style={progressStyles.field}>
-            <View style={progressStyles.progress}><Text style={[progressStyles.bar, {width: value}]}></Text></View>
-            <Text style={progressStyles.percentage}>{value}</Text>
-        </View>
-    )
-}
+import { progressStyles } from './appStyles';
 
-export default Progress;
+const Progress = ({ value, colors }) => {
+  const { primary, secondary, tertiary, placeholder, alternative } = colors;
+
+  return (
+    <View style={progressStyles.field}>
+      <View style={[progressStyles.progress, { borderColor: secondary, backgroundColor: secondary }]}>
+        <Text style={[progressStyles.bar, { width: value, backgroundColor: tertiary }]}></Text>
+      </View>
+      <Text style={[progressStyles.percentage, { color: tertiary }]}>{value}</Text>
+    </View>
+  );
+};
+
+const mapStateToProps = (state) => ({
+  colors: state.task.colorSet,
+});
+
+export default connect(mapStateToProps)(Progress);

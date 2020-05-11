@@ -13,12 +13,9 @@ import BottomNav from './home';
 import HeaderSwitch from '../shared/HeaderSwitch';
 import Splash from '../screens/Splash';
 
-// Styles
-import {colors} from '../shared/appStyles';
-
 const Stack = createStackNavigator();
 
-const RootStack = ({isLoading, setupProgress}) => {
+const RootStack = ({isLoading, setupProgress, colors}) => {
     setTimeout(() => setupProgress(), 2000);
     
     if (isLoading) {
@@ -41,6 +38,10 @@ const RootStack = ({isLoading, setupProgress}) => {
                         padding: 10
                     },
                     headerRight: () => (<HeaderSwitch />)
+    ,headerRightContainerStyle: {
+        padding: 10,
+        paddingRight: 7
+    }
                 }}
             >
                 <Stack.Screen name="Home" component={BottomNav} />
@@ -52,7 +53,8 @@ const RootStack = ({isLoading, setupProgress}) => {
 }
 
 const mapStateToProps = state => ({
-    isLoading: state.task.isLoading
+    isLoading: state.task.isLoading,
+    colors: state.task.colorSet,
 })
 
 export default connect(mapStateToProps, {setupProgress})(RootStack);
