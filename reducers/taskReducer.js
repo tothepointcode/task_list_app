@@ -23,21 +23,7 @@ const initialState = {
   activeScreen: 'Tasks',
   activeCollection: 0,
   progressData: [],
-  tasks: [
-    {
-      name: 'Groceries',
-      data: [{ title: 'Get some fish' }, { title: 'Salmon' }, { title: 'Brocoli' }, { title: 'Black pepper' }],
-    },
-    {
-      name: 'Code Stuff',
-      data: [
-        { title: 'Revision on java' },
-        { title: 'Finish portfolio website' },
-        { title: 'Push app to the app store' },
-        { title: 'Submit poly assignment' },
-      ],
-    },
-  ],
+  tasks: [],
 };
 
 const taskReducer = (state = initialState, action) => {
@@ -112,7 +98,7 @@ const taskReducer = (state = initialState, action) => {
         ...tasks[activeCollection].data.filter((item) => {
           return item.title !== payload;
         }),
-        {title: payload, done: true}
+        { title: payload, done: true },
       ];
 
       let newTaskList = [...tasks];

@@ -10,9 +10,7 @@ export const taskStyles = StyleSheet.create({
     flex: 1,
     margin: 0,
   },
-  text: {
-   
-  },
+  text: {},
   head: {
     fontSize: 22,
     paddingVertical: 5,
@@ -35,13 +33,13 @@ export const taskStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    minHeight: 90
+    minHeight: 90,
   },
   itemDone: {
-    opacity: 0.5
+    opacity: 0.5,
   },
   itemDoneText: {
-    textDecorationLine: 'line-through'
+    textDecorationLine: 'line-through',
   },
   title: {
     fontSize: 18,
@@ -133,7 +131,7 @@ export const progressStyles = StyleSheet.create({
     marginLeft: 0,
     borderRadius: 25,
     borderWidth: 1,
-    width: '88%',
+    width: '87.5%',
   },
   bar: {
     width: '50%',
@@ -141,7 +139,7 @@ export const progressStyles = StyleSheet.create({
     borderRadius: 25,
   },
   percentage: {
-    width: '12%',
+    width: '12.5%',
   },
   field: {
     flexDirection: 'row',
