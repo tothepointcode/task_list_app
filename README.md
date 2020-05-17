@@ -6,6 +6,7 @@ An app for keeping track of tasks to be performed. Related tasks are kept in col
 
 - [Expo](https://expo.io/tools)
 - [React Native](https://reactnative.dev/)
+- [Redux](https://redux.js.org/) - for state management
 
 ## Screenshots
 
