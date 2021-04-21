@@ -5,10 +5,13 @@
     "name": "Task List App",
     "slug": "taskListApp",
     "privacy": "public",
-    "sdkVersion": "36.0.0",
     "version": "1.0.0",
     "entryPoint": "node_modules/expo/AppEntry.js",
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "description": "An app for keeping a collection of tasks to be performed.",
     "githubUrl": "https://github.com/TerraCobynnha/task_list_app"
   }
